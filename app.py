@@ -5,7 +5,7 @@ from flask import *
 
 
 app = Flask(__name__)  
- 
+app.config['UPLOAD_PATH'] = 'uploads'
 
 @app.route('/',methods = ['GET','POST'])  
 def home():
@@ -15,7 +15,7 @@ def home():
         f = request.files['file']  
         f.save('TS_MM012.xlsx')  
  
-        file_path = 'TS_MM012.xlsx'
+        file_path = 'uploads/TS_MM012.xlsx'
 
         df = pd.read_excel(file_path,header=None)
         df = df.rename(columns=df.iloc[1])
